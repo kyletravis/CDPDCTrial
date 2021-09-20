@@ -37,11 +37,11 @@ systemctl restart chronyd
 sudo /etc/init.d/network restart
 
 echo "-- Configure networking"
-PUBLIC_IP=`curl https://api.ipify.org/`
+PUBLIC_IP=192.168.1.143
 #hostnamectl set-hostname `hostname -f`
 sed -i$(date +%s).bak '/^[^#]*cloudera/s/^/# /' /etc/hosts
 sed -i$(date +%s).bak '/^[^#]*::1/s/^/# /' /etc/hosts
-echo "`host cloudera |grep address | awk '{print $4}'` `hostname` `hostname`" >> /etc/hosts
+echo "${PUBLIC_IP} `hostname` `hostname`" >> /etc/hosts
 #sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
 systemctl disable firewalld
 systemctl stop firewalld
@@ -82,7 +82,7 @@ yum install -y cloudera-manager-agent cloudera-manager-daemons cloudera-manager-
 sed -i$(date +%s).bak '/^[^#]*server_host/s/^/# /' /etc/cloudera-scm-agent/config.ini
 sed -i$(date +%s).bak '/^[^#]*listening_ip/s/^/# /' /etc/cloudera-scm-agent/config.ini
 sed -i$(date +%s).bak "/^# server_host.*/i server_host=$(hostname)" /etc/cloudera-scm-agent/config.ini
-sed -i$(date +%s).bak "/^# listening_ip=.*/i listening_ip=$(host cloudera |grep address | awk '{print $4}')" /etc/cloudera-scm-agent/config.ini
+sed -i$(date +%s).bak "/^# listening_ip=.*/i listening_ip=${PUBLIC_IP}" /etc/cloudera-scm-agent/config.ini
 
 service cloudera-scm-agent restart
 
