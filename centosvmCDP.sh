@@ -175,10 +175,11 @@ systemctl restart sshd
 echo "-- Start CM, it takes about 2 minutes to be ready"
 systemctl start cloudera-scm-server
 
-while [ `curl -s -X GET -u "admin:admin"  http://localhost:7180/api/version` -z ] ;
-    do
-    echo "waiting 10s for CM to come up..";
-    sleep 10;
+echo -n "Waiting CM to come up";
+until $(curl --output /dev/null --silent  --fail --head -X GET -u "admin:admin"  http://localhost:7180/api/version); 
+      do 
+      printf '.' 
+      sleep 5 
 done
 
 echo "-- Now CM is started and the next step is to automate using the CM API"
