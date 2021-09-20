@@ -39,9 +39,9 @@ sudo /etc/init.d/network restart
 echo "-- Configure networking"
 PUBLIC_IP=192.168.1.143
 #hostnamectl set-hostname `hostname -f`
-sed -i$(date +%s).bak '/^[^#]*cloudera/s/^/# /' /etc/hosts
-sed -i$(date +%s).bak '/^[^#]*::1/s/^/# /' /etc/hosts
-echo "${PUBLIC_IP} `hostname` `hostname`" >> /etc/hosts
+#sed -i$(date +%s).bak '/^[^#]*cloudera/s/^/# /' /etc/hosts
+#sed -i$(date +%s).bak '/^[^#]*::1/s/^/# /' /etc/hosts
+echo "${PUBLIC_IP} `hostname`" >> /etc/hosts
 #sed -i "s/HOSTNAME=.*/HOSTNAME=`hostname`/" /etc/sysconfig/network
 systemctl disable firewalld
 systemctl stop firewalld
