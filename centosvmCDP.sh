@@ -37,7 +37,7 @@ systemctl restart chronyd
 sudo /etc/init.d/network restart
 
 echo "-- Configure networking"
-PUBLIC_IP=192.168.1.143
+PUBLIC_IP=192.168.10.23
 #hostnamectl set-hostname `hostname -f`
 #sed -i$(date +%s).bak '/^[^#]*cloudera/s/^/# /' /etc/hosts
 #sed -i$(date +%s).bak '/^[^#]*::1/s/^/# /' /etc/hosts
