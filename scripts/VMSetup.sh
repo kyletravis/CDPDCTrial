@@ -37,7 +37,7 @@ sudo mkdir data
 echo "Downloading CDP DC Trial Pre Req Install"
 
 cd ~
-git clone https://github.com/carrossoni/CDPDCTrial.git
+git clone https://github.com/kyletravis/CDPDCTrial.git
 cd CDPDCTrial
 chmod 777 centosvmCDP.sh
 sudo ./centosvmCDP.sh
